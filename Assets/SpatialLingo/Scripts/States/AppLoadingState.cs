@@ -186,7 +186,7 @@ namespace SpatialLingo.States
 #if UNITY_ANDROID
             m_hasMrukPermissions = IsScenePermissionGranted();
 #else 
-            HasMrukPermissions = true;
+            m_hasMrukPermissions = true;
 #endif
             while (!m_hasMrukPermissions)
             {
@@ -307,10 +307,12 @@ namespace SpatialLingo.States
             InferenceEngineUtilities.PreloadingComplete -= OnComputeShadersLoadComplete;
         }
 
+#if UNITY_ANDROID
         private static bool IsScenePermissionGranted()
         {
             return Permission.HasUserAuthorizedPermission(OVRPermissionsRequester.ScenePermission);
         }
+#endif
 
         private static bool AreAllPermissionsGranted()
         {
